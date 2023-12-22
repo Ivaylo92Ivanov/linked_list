@@ -64,7 +64,7 @@ const linkedListFactory = (() => {
 
     let currentNode = head;
     for(let i=1; i<idx+1; i++) {
-      currentNode = currentNode.next
+      currentNode = currentNode.next;
     };
     return currentNode;
   };
@@ -144,7 +144,7 @@ const linkedListFactory = (() => {
 
     currentNode = head;
     for (let curIdx = 1; curIdx<idx; curIdx++) {
-      currentNode = currentNode.next
+      currentNode = currentNode.next;
     }
 
     let newNode = nodeFactory(value);
@@ -196,12 +196,11 @@ const nodeFactory = ((value=null, next=null) => {
   return {value, next};
 });
 
-let a = linkedListFactory()
-let b = nodeFactory()
+let testList = linkedListFactory();
+testList.prepend(1);
+testList.prepend(2);
+testList.prepend(3);
+testList.prepend(4);
+testList.prepend(5);
 
-
-a.prepend(2)
-a.prepend(3)
-a.prepend(4)
-a.prepend(5)
-a.toString()
+testList.toString();
