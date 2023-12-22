@@ -29,12 +29,9 @@ const linkedListFactory = (() => {
   let size = 0;
 
   const getTail = () => {
-    let currentNode = head;
-    while (currentNode!=null) {
-      if (currentNode.next==null) break;
-      currentNode = currentNode.next;
-    };
-    tail = currentNode;
+    let tmpNode = head;
+    while (tmpNode!=null) tmpNode = tmpNode.next;
+    tail = tmpNode;
     return tail;
   };
 
@@ -62,11 +59,11 @@ const linkedListFactory = (() => {
     if((idx<0) || (idx>=size)) return undefined;
     if (idx==0) return head;
 
-    let currentNode = head;
+    let tmpNode = head;
     for(let i=1; i<idx+1; i++) {
-      currentNode = currentNode.next;
+      tmpNode = tmpNode.next;
     };
-    return currentNode;
+    return tmpNode;
   };
   
   // - pop removes the last element from the list and returns it
@@ -80,35 +77,35 @@ const linkedListFactory = (() => {
       return poppedNode;
     };
 
-    let currentNode = head;
-    while (currentNode.next!=null) {
-      if (currentNode.next.next==null) break; 
-      currentNode = currentNode.next;
+    let tmpNode = head;
+    while (tmpNode.next!=null) {
+      if (tmpNode.next.next==null) break; 
+      tmpNode = tmpNode.next;
     };
-    poppedNode = currentNode.next;
-    tail = currentNode;
+    poppedNode = tmpNode.next;
+    tail = tmpNode;
     tail.next = null;
     return poppedNode;
   };
 
   // - contains(value) returns true if the passed in value is in the list and otherwise returns false.
   const contains = (value) => {
-    let currentNode = head;
-    while (currentNode!=null) {
-      if (currentNode.value==value) return true;
-      if (currentNode.next==null) break;
-      currentNode = currentNode.next;
+    let tmpNode = head;
+    while (tmpNode!=null) {
+      if (tmpNode.value==value) return true;
+      if (tmpNode.next==null) break;
+      tmpNode = tmpNode.next;
     };
     return false;
   };
   // - find(value) returns the index of the node containing value, or null if not found.
   const find = (value) => {
     let idx = 0;
-    let currentNode = head;
-    while (currentNode!=null) {
-      if (currentNode.value==value) return idx;
-      if (currentNode.next==null) break;
-      currentNode = currentNode.next;
+    let tmpNode = head;
+    while (tmpNode!=null) {
+      if (tmpNode.value==value) return idx;
+      if (tmpNode.next==null) break;
+      tmpNode = tmpNode.next;
       idx += 1;
     };
     return null;
@@ -121,14 +118,14 @@ const linkedListFactory = (() => {
     let stringValue = '';
     if (head==null) stringValue = 'null';
 
-    let currentNode = head;
-    while (currentNode!=null) {
-      stringValue += `( ${currentNode.value} ) -> `;
-      if (currentNode.next==null) {
+    let tmpNode = head;
+    while (tmpNode!=null) {
+      stringValue += `( ${tmpNode.value} ) -> `;
+      if (tmpNode.next==null) {
         stringValue += 'null';
         break;
       };
-      currentNode = currentNode.next;
+      tmpNode = tmpNode.next;
     };
 
     console.log(stringValue)
@@ -142,15 +139,15 @@ const linkedListFactory = (() => {
       return;
     };
 
-    currentNode = head;
+    tmpNode = head;
     for (let curIdx = 1; curIdx<idx; curIdx++) {
-      currentNode = currentNode.next;
+      tmpNode = tmpNode.next;
     }
 
     let newNode = nodeFactory(value);
-    let nextNode = currentNode.next;
+    let nextNode = tmpNode.next;
 
-    currentNode.next = newNode;
+    tmpNode.next = newNode;
     newNode.next = nextNode;
     size += 1;
     toString();
@@ -166,12 +163,12 @@ const linkedListFactory = (() => {
       return;
     };
 
-    currentNode = head;
+    tmpNode = head;
     for(let curIdx=1; curIdx<idx; curIdx++) {
-      currentNode=currentNode.next;
+      tmpNode=tmpNode.next;
     }
-    let removedNode = currentNode.next
-    currentNode.next = currentNode.next.next;
+    let removedNode = tmpNode.next
+    tmpNode.next = tmpNode.next.next;
     return removedNode
   }
 
