@@ -1,6 +1,8 @@
 # linked_list
 An assignment project from the Odin Project curriculum
 
+Implementation of a singly linked list
+
 https://www.theodinproject.com/lessons/javascript-linked-lists
 
 Build the following functions in your linked list class:
